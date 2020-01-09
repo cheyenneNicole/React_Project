@@ -1,0 +1,42 @@
+Navbar
+    Logo
+    Smart search bar
+    Login----When user logins in the user name will replace the login
+    Cart image that increases with adds to Cart ---if zero items show zero
+Footer
+    dummy links
+
+Login 
+    navbar
+    username
+    password
+    signin button
+    forgot password button
+    footer
+
+Item Description page
+    navbar
+    Back button
+    Item picture
+    stock or not 
+    SKU#
+    colors---with actually colors
+    qty dropdown starts at 1qty
+    payment options----monthy or total
+    Description-paragraph and stars
+    features
+    details
+    add to cart button 
+    footer
+
+Checkout page  
+    navbar
+    back button
+    item picture
+    title
+    price
+    availability
+    colors
+    Remove link
+    proceed to order button 
+    foot
