@@ -36,6 +36,28 @@ main {flex: 1 0 auto;}
   width: 100%;
   color:red
 }
+
+.notification {
+  background-color: #ee6e73;
+  color: white;
+  text-decoration: none;
+  padding: .10px 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.notification:hover {
+  background: red;
+}
+
+.notification .badge {
+  position: relative;
+  top: -12px;
+  right: 5px;
+  border-radius: 60%;
+  background: grey;
+  color: white;
+}
 .top {
   position: fixed;
   top: 0;

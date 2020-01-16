@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { removeItem,addQuantity,subQuantity,increaseQuantity, decreaseQuantity} from './ItemInfos'
+import { removeItem,addQuantity,subQuantity,increaseQuantity, decreaseQuantity, showQuantity} from './ItemInfos'
 import Checkout from './Checkout';
 import {IoIosArrowUp, IoIosArrowDown} from 'react-icons/io'
 import DescriptionPage from './DescriptionPage';
@@ -11,17 +11,20 @@ class Item extends Component{
 
     handleRemove = (id)=>{
         this.props.removeItem(id);
+        //this.props.showQuantity(quantity);
     }
 
     handleAddQuantity = (id)=>{
         this.props.addQuantity(id);
+        //this.props.showQuantity(quantity);
     }
 
     handleSubQuantity = (id)=>{
         this.props.subQuantity(id);
+        //this.props.showQuantity(quantity);
     }
     render(){    
-        console.log(this.props.items.quantity);
+
         let addedItems = this.props.items.length ?
             (  
                 this.props.items.map(item=>{
@@ -78,7 +81,8 @@ const mapDispatchToProps = (dispatch)=>{
     return{
         removeItem: (id)=>{dispatch(removeItem(id))},
         addQuantity: (id)=>{dispatch(addQuantity(id))},
-        subQuantity: (id)=>{dispatch(subQuantity(id))}
+        subQuantity: (id)=>{dispatch(subQuantity(id))},
+        //showQuantity: (quantity) =>{dispatch(showQuantity(quantity))}
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Item)

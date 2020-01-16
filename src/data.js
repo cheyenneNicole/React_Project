@@ -11,7 +11,7 @@ const ADD_QUANTITY = 'ADD_QUANTITY';
 const ADD_SHIPPING = 'ADD_SHIPPING';
 const SAVE_LOGIN = 'SAVE_LOGIN';
 const CHOOSE_ITEM = 'CHOOSE_ITEM';
-
+const SHOW_QUANTITY = 'SHOW_QUANTITY';
 
 
 const initialState ={
@@ -31,8 +31,6 @@ const initialState ={
             details: 'The iPhone 11 display has rounded corners that follow a beautiful curved design, and these corners are within a standard rectangle.',
             sku: '09437296284',
             img: iphone11,
-            quantity: 0
-
         },
         {
             id: 1,
@@ -47,8 +45,7 @@ const initialState ={
             priceMonthly: "41.66/mo",
             details: 'The iPhone 11 display has rounded corners that follow a beautiful curved design, and these corners are within a standard rectangle.',
             sku: '09437296284',
-            img: iphone11Ex,
-            quantity:0
+            img: iphone11Ex
         },
         {
             id: 2,
@@ -63,12 +60,12 @@ const initialState ={
             priceMonthly: "41.66/mo",
             details: 'The iPhone 11 display has rounded corners that follow a beautiful curved design, and these corners are within a standard rectangle.',
             sku: '09437296284',
-            img: iphonexr,
-            quantity:0
+            img: iphonexr
         }
     ],
     addedItems:[],
-    total: 0.00
+    total: 0.00,
+    amount: 0
 
 }
 const itemReducer = (state = initialState, action)=>{
@@ -78,20 +75,19 @@ const itemReducer = (state = initialState, action)=>{
         let existed_item= state.addedItems.find(item=> action.id === item.id)
         if(existed_item)
         {
-           addedItem.quantity += 1 
+            addedItem.quantity += 1 
             return{
-               ...state,
+                ...state,
                 total: state.total + addedItem.priceTotal
                  }
        }
         else{
-           addedItem.quantity = 1;
+            addedItem.quantity = 1;
            let newTotal = state.total + addedItem.priceTotal
-           
            return{
-               ...state,
-               addedItems: [...state.addedItems, addedItem],
-               total : newTotal
+                ...state,
+                addedItems: [...state.addedItems, addedItem],
+                total: newTotal
            }
            
        }
@@ -101,19 +97,21 @@ const itemReducer = (state = initialState, action)=>{
        let existed_item= state.addedItems.find(item=> action.id === item.id)
        if(existed_item)
        {
-          addedItem.quantity += 1 
-           return{
-              ...state,
-               total: state.total + addedItem.priceTotal
-                }
+            addedItem.quantity += 1;
+            return{
+                ...state,
+                amount: state.amount + addedItem.quantity,
+                total: state.total + addedItem.priceTotal
+            }
       }
        else{
           addedItem.quantity = 1;
           let newTotal = state.total + addedItem.priceTotal
-          
+          let newAmount= state.amount + addedItem.quantity
           return{
               ...state,
               addedItems: [...state.addedItems, addedItem],
+              amount: newAmount,
               total : newTotal
           }
           
@@ -123,10 +121,11 @@ const itemReducer = (state = initialState, action)=>{
       let itemToRemove= state.addedItems.find(item=> action.id === item.id)
       let new_items = state.addedItems.filter(item=> action.id !== item.id)
       let newTotal = state.total - (itemToRemove.priceTotal * itemToRemove.quantity )
-      console.log(itemToRemove)
+      let newAmount = state.amount - (itemToRemove.quantity)
       return{
           ...state,
           addedItems: new_items,
+          amount: newAmount,
           total: newTotal
       }
   }
@@ -135,28 +134,34 @@ const itemReducer = (state = initialState, action)=>{
       let addedItem = state.items.find(item=> item.id === action.id)
         addedItem.quantity += 1 
         let newTotal = state.total + addedItem.priceTotal
+        let newAmount = state.amount + 1
         return{
             ...state,
+            amount: newAmount,
             total: newTotal
         }
   }
   if(action.type=== SUB_QUANTITY){  
       let addedItem = state.items.find(item=> item.id === action.id) 
-      //if the qt == 0 then it should be removed
+
       if(addedItem.quantity === 1){
           let new_items = state.addedItems.filter(item=>item.id !== action.id)
           let newTotal = state.total - addedItem.priceTotal
+          let newAmount =state.amount - new_items.quantity
           return{
               ...state,
               addedItems: new_items,
+              amount: newAmount,
               total: newTotal
           }
       }
       else {
           addedItem.quantity -= 1
           let newTotal = state.total - addedItem.priceTotal
+          let newAmount =state.amount - 1
           return{
               ...state,
+              amount: newAmount,
               total: newTotal
           }
       }
@@ -174,6 +179,14 @@ if(action.type=== 'SUB_SHIPPING'){
       total: state.total - 6.00
   }
 }
+/*
+if (action.type === SHOW_QUANTITY){
+    return{
+        ...state,
+        quantity: action.payload.quantity
+    }
+}
+*/
 if (action.type === SAVE_LOGIN){
     return{
         ...state,
@@ -184,4 +197,5 @@ else{
   return state
   }
 }
+
 export default itemReducer;

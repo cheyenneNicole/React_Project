@@ -18,7 +18,7 @@ class Checkout extends Component{
             this.props.substractShipping();
         }
     }
-
+    
     render(){
         return(
             <div className="container">
@@ -30,6 +30,7 @@ class Checkout extends Component{
                             </label>
                         </li>
                         <li className="collection-item"><b>Total: {this.props.total} $</b></li>
+                        <p>{this.props.amount}</p>
                     </div>
                     <div className="checkout">
                         <button className="waves-effect waves-light btn">Checkout</button>
@@ -42,6 +43,7 @@ class Checkout extends Component{
 const mapStateToProps = (state)=>{
     return{
         addedItems: state.addedItems,
+        amount: state.amount,
         total: state.total
     }
 }

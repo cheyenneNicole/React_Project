@@ -7,13 +7,20 @@ const SUB_QUANTITY = 'SUB_QUANTITY';
 const ADD_QUANTITY = 'ADD_QUANTITY';
 const SAVE_LOGIN = 'SAVE_LOGIN';
 const CHOOSE_ITEM = 'CHOOSE_ITEM';
-
+const SHOW_QUANTITY = 'SHOW_QUANTITY';
 
 export const saveLogin = (username) =>{
     console.log(username);
     return {
         type:SAVE_LOGIN,
         payload: {username}
+    }
+}
+export const showQuantity = (quantity) =>{
+    console.log(quantity + 'in itemInfos');
+    return {
+        type:SHOW_QUANTITY,
+        payload: {quantity}
     }
 }
 export const chooseItem = (id) =>{

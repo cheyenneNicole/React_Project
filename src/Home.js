@@ -4,17 +4,20 @@ import { connect } from 'react-redux'
 import 'materialize-css/dist/css/materialize.min.css';
 import {chooseItem} from './ItemInfos';
 import './App.css';
-import { addToCart } from './ItemInfos';
+import { addToCart, showQuantity } from './ItemInfos';
 import { MdAddBox } from 'react-icons/md';
+import { withRouter } from 'react-router-dom';
 
 
 class Home extends Component {
 
   handleClick = (id)=>{
-    console.log(id);
     this.props.addToCart(id);
+    //alert(this.state.quantity);
+    //this.props.showQuantity(quantity);
     this.props.history.push('/cart');
   }
+
   handleButton = (id) =>{
     this.props.chooseItem(id); 
     this.props.history.push('/items');
@@ -25,7 +28,6 @@ class Home extends Component {
             <div className="img-holder" key={item.id}>
                     <div className="card-image">
                         <img src={item.img} alt={item.name}/>
-                        <br></br>
                         <span to="/items" onClick={() => {this.handleButton(item.id)}}>{item.name}</span>
                         <span to="/" onClick={()=>{this.handleClick(item.id)}} ><MdAddBox/></span>
                     </div>
@@ -55,12 +57,13 @@ const mapStateToProps = (state)=>{
 const mapDispatchToProps= (dispatch)=>{
   return{
       chooseItem: (id) => {dispatch(chooseItem(id))},
-      addToCart: (id) => {dispatch(addToCart(id))}
+      addToCart: (id) => {dispatch(addToCart(id))},
+      //showQuantity: (quantity) => {dispatch(showQuantity(quantity))}
 
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Home));
 
 
 
