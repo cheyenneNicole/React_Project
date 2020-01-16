@@ -25,6 +25,7 @@ main {flex: 1 0 auto;}
 
 .img-holder{
   border-style: solid;
+  display:inline-block;
   width: 33%;
 }
 .notify{

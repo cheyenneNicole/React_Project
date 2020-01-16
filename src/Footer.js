@@ -1,5 +1,7 @@
 import React from "react";
 import './App.css';
+import {MdChat, MdHome} from 'react-icons/md';
+import {FaFacebookF, FaSnapchatGhost, FaInstagram,FaYoutube} from 'react-icons/fa';
 const FooterPage = () => {
   return (
     <div class="footer-fixed">
@@ -7,12 +9,18 @@ const FooterPage = () => {
 		<nav class="z-depth-0">
 			<div class="nav-wrapper">
 				<ul class="justify">
-					<li><a href="#!"><i class="material-icons">filter</i></a></li>
-					<li><a href="#!"><i class="material-icons">chat_bubble</i></a></li>
-					<li><a class="active" href="#test3"><i class="material-icons">home</i></a></li>
-					<li><a href="#!"><i class="material-icons">camera_alt</i></a></li>
-					<li><a href="#!"><i class="material-icons">camera_roll</i></a></li>
+					<div >
+						<li>Follow us</li>
+						<li><a href="#!"><FaFacebookF/></a></li>
+						<li><a href="#!"><FaSnapchatGhost/></a></li>
+						<li><a href="#!"><FaInstagram/></a></li>
+						<li><a href="#!"><FaYoutube/></a></li>
+					</div>
 				</ul>
+				<div float="left">
+				<li><a href="#!"><MdChat/></a></li>
+				<li><a href="#!"><MdHome/></a></li>
+				</div>
 			</div>
 		</nav>
 	</footer>

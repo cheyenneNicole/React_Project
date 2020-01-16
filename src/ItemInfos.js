@@ -5,7 +5,24 @@ const ADD_ITEM = 'ADD_ITEM';
 const REMOVE_ITEM = 'REMOVE_ITEM';
 const SUB_QUANTITY = 'SUB_QUANTITY';
 const ADD_QUANTITY = 'ADD_QUANTITY';
+const SAVE_LOGIN = 'SAVE_LOGIN';
+const CHOOSE_ITEM = 'CHOOSE_ITEM';
 
+
+export const saveLogin = (username) =>{
+    console.log(username);
+    return {
+        type:SAVE_LOGIN,
+        payload: {username}
+    }
+}
+export const chooseItem = (id) =>{
+    console.log(id);
+    return {
+        type: CHOOSE_ITEM,
+        id
+    }
+}
 export const addToCart = (id) => {
     return{
         type: ADD_ITEM,

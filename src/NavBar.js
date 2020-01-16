@@ -4,25 +4,26 @@ import './App.css';
 import logo from './Images/logo.png';
 import './materialize.css';
 import MaterialIcon, {colorPalette} from 'material-icons-react';
- class Navbar extends Component{
-   render(){    
-    console.log("this is homepage",this.props.data);
-    const newlogin = this.props.data;
-    console.log(newlogin);
+import {FiShoppingCart} from 'react-icons/fi';
+import TextField from '@material-ui/core/TextField';
+import {IoIosSearch} from 'react-icons/io';
+import { makeStyles } from '@material-ui/core/styles';
+import {connect} from 'react-redux';
+import  SearchBar from './SearchBar';
+import cartAdder from './cartAdder';
+const Navbar = ({username, quantity}) => {
     return(
             <nav className="nav-fixed">
                 <div className="nar-wrapper">
                     <Link to="/"> <img src = {logo} height = "30" /></Link>
-                    
                     <ul className="right">
-                        <li><Link to="/cart"><MaterialIcon icon="shopping_cart"/><span class = "badge"><div className = "notify">5</div></span></Link></li>
-                        <li><Link to="/signin">Login</Link></li>
-                        <li><Link to="/signin">{newlogin}</Link></li>
+                        <li><Link to="/cart">{quantity}<FiShoppingCart/></Link></li>
+
+                        <li><Link to="/signin">{username === "" ? "Login" : username}</Link></li>
                         <li>
                         <form>
                           <div class="input-field">
-                            <input id="search" type="search" required/>
-                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <SearchBar/>
                             <i class="material-icons" >close</i>
                           </div>
                         </form>
@@ -33,6 +34,13 @@ import MaterialIcon, {colorPalette} from 'material-icons-react';
             </nav>
     )
 }
- }
 
-export default Navbar;
+
+ const mapStateToProps = (state)=>{
+  return {
+    username: state.username,
+    quantity: state.quantity
+  }
+}
+
+export default connect (mapStateToProps, null) (Navbar);

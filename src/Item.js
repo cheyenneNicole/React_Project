@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { removeItem,addQuantity,subQuantity} from './ItemInfos'
+import { removeItem,addQuantity,subQuantity,increaseQuantity, decreaseQuantity} from './ItemInfos'
 import Checkout from './Checkout';
+import {IoIosArrowUp, IoIosArrowDown} from 'react-icons/io'
+import DescriptionPage from './DescriptionPage';
 
 
 class Item extends Component{
@@ -18,8 +20,8 @@ class Item extends Component{
     handleSubQuantity = (id)=>{
         this.props.subQuantity(id);
     }
-    render(){
-              
+    render(){    
+        console.log(this.props.items.quantity);
         let addedItems = this.props.items.length ?
             (  
                 this.props.items.map(item=>{
@@ -38,20 +40,19 @@ class Item extends Component{
                                             <b>Quantity: {item.quantity}</b> 
                                         </p>
                                         <div className="add-remove">
-                                            <Link to="/cart"><i className="material-icons" onClick={()=>{this.handleAddQuantity(item.id)}}>arrow_drop_up</i></Link>
-                                            <Link to="/cart"><i className="material-icons" onClick={()=>{this.handleSubQuantity(item.id)}}>arrow_drop_down</i></Link>
+                                            <Link to="/cart"><i className="material-icons" onClick={()=>{this.handleAddQuantity(item.id)}}><IoIosArrowUp/></i></Link>
+                                            <Link to="/cart"><i className="material-icons" onClick={()=>{this.handleSubQuantity(item.id)}}><IoIosArrowDown/></i></Link>
                                         </div>
                                         <button className="waves-effect waves-light btn pink remove" onClick={()=>{this.handleRemove(item.id)}}>Remove</button>
                                     </div>
                                     
                                 </li>
-                         
                     )
                 })
             ):
 
              (
-                <p>Nothing.</p>
+                <p>Cart is Empty</p>
              )
        return(
             <div className="container">
@@ -61,7 +62,7 @@ class Item extends Component{
                         {addedItems}
                     </ul>
                 </div> 
-                <Checkout />          
+                <Checkout/> 
             </div>
        )
     }

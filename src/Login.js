@@ -8,6 +8,8 @@ import {
   Switch,
 } from "react-router-dom";
 import Navbar from "./NavBar";
+import {connect} from 'react-redux';
+import {saveLogin }from './ItemInfos';
 
 class Login extends Component {
 
@@ -31,16 +33,19 @@ class Login extends Component {
   
   onSubmit = () =>{
       alert(this.state.username);
+      let {username, password } = this.state;
+      console.log(username);
+      this.props.saveLogin(username);
       this.props.history.push('/');
   }
   //<Navbar data={this.state.username}/>
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit = {this.onSubmit}>
           <Input id ="username" labelName="Username: " placeholder="Username" inputType="text" parentFunction={this.setUsername}/>
           <Input id ="password" labelName="Password: " placeholder="Password" inputType="password" parentFunction={this.setPassword} /> 
-          <button onClick ={this.onSubmit}>Submit</button>
+          <input type="submit" value="login"/>
           <button>Forgot Password?</button>
         </form>
         
@@ -49,4 +54,13 @@ class Login extends Component {
   }
 }
 
-export default withRouter(Login);
+
+const mapDispatchToProps= (dispatch)=>{
+    
+  return{
+      saveLogin: (username)=>{dispatch(saveLogin(username))}
+  }
+}
+
+
+export default connect (null,mapDispatchToProps)(withRouter(Login));

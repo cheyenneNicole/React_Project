@@ -7,7 +7,6 @@ import { createStore } from 'redux';
 import {Provider} from 'react-redux';
 import itemActions from './ItemInfos';
 import itemReducer from './data';
-import { helloSaga } from './sagas';
 
 ReactDOM.render(
     <Provider store ={createStore(

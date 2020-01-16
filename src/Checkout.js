@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addShipping } from './data.js'
 import 'materialize-css/dist/css/materialize.min.css';
+import { addQuantity } from './ItemInfos.js';
 class Checkout extends Component{
     
     componentWillUnmount() {
@@ -33,7 +34,6 @@ class Checkout extends Component{
                     <div className="checkout">
                         <button className="waves-effect waves-light btn">Checkout</button>
                     </div>
-
                  </div>
         )
     }
