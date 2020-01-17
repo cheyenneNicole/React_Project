@@ -13,7 +13,7 @@ const Navbar = ({username, amount}) => {
     return(
             <nav className="nav-fixed">
                 <div className="nar-wrapper">
-                    <Link to="/"> <img src = {logo} height = "30" /></Link>
+                    <Link to="/"> <img src = {logo} height = "50" /></Link>
                     <ul className="right">
                       <div className="container2">
                           <li><Link to="/cart">
@@ -22,16 +22,14 @@ const Navbar = ({username, amount}) => {
                               <span class ="badge">{amount}</span>
                             </div>
                           </Link></li>
-                        </div>
-                        <li><Link to="/signin">{username === "" ? "Login" : username}</Link></li>
-                        <li>
+                          <li><Link to="/signin">{username === "" ? "Login" : username}</Link></li>
+                          <li>
                         <form>
-                          <div class="input-field">
                             <SearchBar/>
-                            <i class="material-icons" >close</i>
-                          </div>
                         </form>
                         </li>
+                        </div>
+                       
                     </ul>
                     
                 </div>

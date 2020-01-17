@@ -49,7 +49,16 @@ main {flex: 1 0 auto;}
 .notification:hover {
   background: red;
 }
+.despPage1{
+  top: 25%;
+  left:50%;
+  display: block;
+  position: absolute;
+  
+}
+.container2{
 
+}
 .notification .badge {
   position: relative;
   top: -12px;
@@ -107,6 +116,59 @@ main {flex: 1 0 auto;}
   overflow: hidden;
   height: 35px
 }
+
+.topnav Link {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: right;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.wrapper { 
+  border : 2px solid grey; 
+  overflow:hidden;
+  text-align: center;
+}
+
+.wrapper div {
+   min-height: 200px;
+   padding: 10px;
+}
+
+#one {
+  background-color: gray;
+  float:left; 
+  margin-right:20px;
+  width:140px;
+  border-right:2px solid #000;
+}
+#two { 
+  background-color: white;
+  overflow:hidden;
+  margin:10px;
+  border:2px dashed #ccc;
+  min-height:170px;
+}
+
+@media screen and (max-width: 400px) {
+   #one { 
+    float: none;
+    margin-right:0;
+    width:auto;
+    border:0;
+    border-bottom:2px solid #000;    
+  }
+}
+
+
+
+
+
+
+
+
 
 
 /* Change the color of links on hover */

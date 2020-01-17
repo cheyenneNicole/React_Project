@@ -37,7 +37,7 @@ const initialState ={
             name: 'iPhone11 pro max',
             description: 'it features a 6.1-inch LCD display that Apple calls a "Liquid Retina HD Display." It features a 1792 x 828 resolution at 326ppi a 1400:1 contrast ratio, 625 nits max brightness, True Tone support for adjusting the white balance to the ambient lighting, and wide color support for true-to-life colors.',
             features: 'Finish. Black, Green, Yellow, Purple, and White and Capacity 64GB,SDisplay Liquid Retina HD display Splash, Water, and Dust Resistant 3 Rated IP68 (maximum depth of 2 meters up to 30 minutes) under IEC standard 60529.Chip. A13 Bionic chip, Camera. Dual 12MP Ultra Wide and Wide cameras Video Recording',
-            stars: 4.5,
+            stars: 5,
             inStock: true,
             img: './Images/iphone11', 
             colors: ['purple', 'yellow', 'green', 'white', 'black', 'red'],
@@ -52,7 +52,7 @@ const initialState ={
             name: 'iPhone XR',
             description: 'it features a 6.1-inch LCD display that Apple calls a "Liquid Retina HD Display." It features a 1792 x 828 resolution at 326ppi a 1400:1 contrast ratio, 625 nits max brightness, True Tone support for adjusting the white balance to the ambient lighting, and wide color support for true-to-life colors.',
             features: 'Finish. Black, Green, Yellow, Purple, and White and Capacity 64GB,SDisplay Liquid Retina HD display Splash, Water, and Dust Resistant 3 Rated IP68 (maximum depth of 2 meters up to 30 minutes) under IEC standard 60529.Chip. A13 Bionic chip, Camera. Dual 12MP Ultra Wide and Wide cameras Video Recording',
-            stars: 4.5,
+            stars: 2,
             inStock: true,
             img: './Images/iphone11', 
             colors: ['purple', 'yellow', 'green', 'white', 'black', 'red'],
@@ -65,9 +65,10 @@ const initialState ={
     ],
     addedItems:[],
     total: 0.00,
-    amount: 0
-
+    amount: 0,
+    colors: ['purple', 'yellow', 'green', 'white', 'black', 'red']
 }
+
 const itemReducer = (state = initialState, action)=>{
 
     if (action.type === CHOOSE_ITEM){
@@ -95,7 +96,7 @@ const itemReducer = (state = initialState, action)=>{
     if(action.type === ADD_ITEM){
        let addedItem = state.items.find(item=> item.id === action.id)
        let existed_item= state.addedItems.find(item=> action.id === item.id)
-       if(existed_item)
+       {if(existed_item)
        {
             addedItem.quantity += 1;
             return{
@@ -114,9 +115,8 @@ const itemReducer = (state = initialState, action)=>{
               amount: newAmount,
               total : newTotal
           }
-          
       }
-  }
+  }}
   if(action.type === REMOVE_ITEM){
       let itemToRemove= state.addedItems.find(item=> action.id === item.id)
       let new_items = state.addedItems.filter(item=> action.id !== item.id)

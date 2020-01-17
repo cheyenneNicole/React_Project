@@ -30,7 +30,6 @@ class Checkout extends Component{
                             </label>
                         </li>
                         <li className="collection-item"><b>Total: {this.props.total} $</b></li>
-                        <p>{this.props.amount}</p>
                     </div>
                     <div className="checkout">
                         <button className="waves-effect waves-light btn">Checkout</button>

@@ -4,11 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-function sleep(delay = 0) {
-  return new Promise(resolve => {
-    setTimeout(resolve, delay);
-  });
-}
 
 export default function SearchBar() {
   const [open, setOpen] = React.useState(false);
@@ -49,7 +44,6 @@ export default function SearchBar() {
             ]
           }
       };
-      await sleep(1e3); // For demo purposes.
       const items = response;
 
       if (active) {
@@ -71,7 +65,7 @@ export default function SearchBar() {
   return (
     <Autocomplete
       id="asynchronous-demo"
-      style={{ width: 200}}
+      style={{ width: 150, height: 25}}
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -82,17 +76,16 @@ export default function SearchBar() {
       getOptionSelected={(option, value) => option.name === value.name}
       getOptionLabel={option => option.name}
       options={options}
-      loading={loading}
+      //loading={loading}
       renderInput={params => (
         <TextField
           {...params}
-          label="Search.."
           fullWidth
+          placeholder="Search"
           InputProps={{
             ...params.InputProps,
             endAdornment: (
               <React.Fragment>
-                {loading ? <CircularProgress color="inherit" size={10} /> : null}
                 {params.InputProps.endAdornment}
               </React.Fragment>
             ),
